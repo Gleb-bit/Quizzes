@@ -20,7 +20,6 @@ from drf_yasg.views import get_schema_view
 from rest_framework import routers, permissions
 
 from quizes_app.api import QuestionViewSet, AnswerViewSet, QuizViewSet, ChoiceViewSet
-from quizes_app.views import ChoicesDetail
 
 router = routers.DefaultRouter()
 router.register('quizzes', QuizViewSet, 'quizzes')
@@ -32,7 +31,7 @@ schema_view = get_schema_view(
     openapi.Info(
         title='Quiz API',
         default_version='v1',
-        description='description of app',
+        description="description of Quizzes's API",
         terms_of_service='https://www.google.com/polices/terms/',
         contact=openapi.Contact(email='admin@company.local'),
         license=openapi.License(name=''),
@@ -45,6 +44,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
-    path('<int:pk>/', ChoicesDetail.as_view(), name="choices_detail"),
 
 ]

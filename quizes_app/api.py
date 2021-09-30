@@ -19,6 +19,8 @@ class QuizViewSet(viewsets.ModelViewSet):
 
 
 class ChoiceViewSet(viewsets.ModelViewSet):
+    '''Information about choices of questions'''
+
     queryset = Choice.objects.all()
     serializer_class = ChoiceSerializer
 
@@ -36,9 +38,3 @@ class AnswerViewSet(viewsets.ModelViewSet):
     serializer_class = AnswerSerializer
     queryset = Answer.objects.all()
 
-    def post(self, request, format=None):
-        answer = AnswerSerializer(data=request.data, context=request)
-        print(answer)
-        if answer.is_valid(raise_exception=True):
-            answer.save()
-            return Response({'result': 'OK'})

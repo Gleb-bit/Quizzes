@@ -3,7 +3,8 @@ from django.db import models
 
 
 class Quiz(models.Model):
-    '''Model for questions'''
+    '''Model for quizzes'''
+
     title = models.CharField(max_length=255, default='')
     description = models.TextField(default='')
     start_date = models.DateField()
@@ -15,6 +16,8 @@ class Quiz(models.Model):
 
 
 class Question(models.Model):
+    '''Model for questions'''
+
     CHOICES = [
         ('текст', 'ответ текстом'),
         ('один вариант', 'ответ с выбором одного варианта'),
@@ -29,6 +32,8 @@ class Question(models.Model):
 
 
 class Answer(models.Model):
+    '''Model for answers of questions'''
+
     question = models.ForeignKey(Question, on_delete=models.DO_NOTHING)
     title = models.CharField(max_length=4096)
     choice = models.ManyToManyField('Choice', blank=True)
@@ -38,6 +43,8 @@ class Answer(models.Model):
 
 
 class Choice(models.Model):
+    '''Model for choices of answers'''
+
     text = models.CharField(max_length=4096, default='')
 
     def __str__(self):
